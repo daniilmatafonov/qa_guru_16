@@ -3,6 +3,7 @@ from requests import Session
 
 
 class ApiBaseUrl(Session):
+    default_url = "https://reqres.in"
     users_url = "/api/users"
     not_found_url = "/api/unknown"
 
@@ -15,5 +16,5 @@ class ApiBaseUrl(Session):
 
 
 def base_url() -> ApiBaseUrl:
-    api_base_url = os.getenv('URL', "https://reqres.in")
+    api_base_url = os.getenv('URL', ApiBaseUrl.default_url)
     return ApiBaseUrl(base_url=api_base_url)
