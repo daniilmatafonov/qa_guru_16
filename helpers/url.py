@@ -1,10 +1,11 @@
 import os
 from requests import Session
 
-api_base_url = os.getenv('URL', "https://reqres.in/")
-
 
 class ApiBaseUrl(Session):
+    users_url = "/api/users"
+    not_found_url = "/api/unknown"
+
     def __init__(self, **kwargs):
         self.base_url = kwargs.pop('base_url')
         super().__init__()
@@ -14,4 +15,5 @@ class ApiBaseUrl(Session):
 
 
 def base_url() -> ApiBaseUrl:
+    api_base_url = os.getenv('URL', "https://reqres.in")
     return ApiBaseUrl(base_url=api_base_url)
